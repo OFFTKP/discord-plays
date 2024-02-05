@@ -14,7 +14,7 @@ var sillyCounter int = 0
 func stringToButton(s string) ButtonType {
 	for i := 0; i < int(ButtonsCount); i++ {
 		var button ButtonType = ButtonType(i)
-		if strings.ToLower(button.String()) == s {
+		if strings.ToLower(button.String()) == strings.ToLower(s) {
 			return button
 		}
 	}
@@ -54,7 +54,8 @@ func commandHold(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	}
 
 	var response string
-	if found {
+
+	if found && requestedButton != -1 {
 		heldButtons = append(heldButtons, stringToButton(requestedButton))
 		disabledButtons[stringToButton(requestedButton)] = true
 		response = "Holding buttons: "
