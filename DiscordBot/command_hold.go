@@ -55,7 +55,7 @@ func commandHold(s *discordgo.Session, i *discordgo.InteractionCreate) {
 
 	var response string
 
-	if found && requestedButton != -1 {
+	if found {
 		heldButtons = append(heldButtons, stringToButton(requestedButton))
 		disabledButtons[stringToButton(requestedButton)] = true
 		response = "Holding buttons: "
